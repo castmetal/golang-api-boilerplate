@@ -1,0 +1,13 @@
+version: "3"
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: supersecret
+    ports: 
+      - 5432:5432
+  redis:
+    image: "redis:alpine"
+    hostname: redis
+    ports:
+      - 6379:6379

@@ -1,0 +1,101 @@
+definitions:
+  dtos.CreateExampleDTO:
+    properties:
+      id:
+        type: string
+      name:
+        minLength: 2
+        type: string
+    required:
+    - name
+    type: object
+  dtos.CreateExampleResponseDTO:
+    properties:
+      example:
+        $ref: '#/definitions/dtos.ExampleResponseDTO'
+    type: object
+  dtos.ExampleResponseDTO:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  dtos.ListAllExampleResponseDTO:
+    properties:
+      examples:
+        items:
+          $ref: '#/definitions/dtos.ExampleResponseDTO'
+        type: array
+    type: object
+externalDocs:
+  description: OpenAPI
+  url: https://swagger.io/resources/open-api/
+host: http://localhost:8088
+info:
+  contact:
+    email: mlaguardia@gmail.com
+    name: Michel La Guardia
+    url: https://www.github.com/castmetal
+  description: This is a sample server
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Example API
+  version: "1.0"
+paths:
+  /v1/example:
+    get:
+      consumes:
+      - application/json
+      description: Listing all examples that was stored in the database
+      parameters:
+      - description: Limit
+        format: numeric
+        in: query
+        name: limit
+        type: string
+      - description: Offset
+        format: numeric
+        in: query
+        name: offset
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.ListAllExampleResponseDTO'
+      summary: List all examples in database
+      tags:
+      - ListAll Example
+    post:
+      consumes:
+      - application/json
+      description: Creating an example
+      parameters:
+      - description: CreateExample Data
+        in: body
+        name: createExample
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.CreateExampleDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.CreateExampleResponseDTO'
+      summary: Create an example based on the name input
+      tags:
+      - Create Example
+swagger: "2.0"

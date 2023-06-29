@@ -1,0 +1,8 @@
+version: 1
+packages:
+  - path: "src/infra/storage/postgres"
+    name: "postgres"
+    sql_package: "pgx/v4"
+    engine: "postgresql"
+    schema: "src/infra/storage/postgres/migrations/"
+    queries: "src/infra/storage/postgres/queries/"
