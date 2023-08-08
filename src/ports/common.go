@@ -14,12 +14,7 @@ type ServerInterface interface {
 }
 
 func IsDev(config config.EnvStruct) bool {
-	isDev := true
-	if config.Environment == "prod" {
-		isDev = false
-	}
-
-	return isDev
+	return config.Environment != "prod"
 }
 
 func ServerLog(config config.EnvStruct) {
